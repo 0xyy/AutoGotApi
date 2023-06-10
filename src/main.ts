@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
 import * as cors from 'cors'
 import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
@@ -27,7 +26,7 @@ async function bootstrap() {
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('/api/docs', app, document);
 
-    app.use(morgan('combined', {stream: logStream}))
+    app.use(morgan('combined', { stream: logStream }))
     app.use(cors({ origin: ['http://localhost:3000'], credentials: true }));
     app.use(cookieParser());
     app.use(session({
